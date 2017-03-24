@@ -933,7 +933,7 @@ filter Convert-SidToName {
             'S-1-5-19'      { 'NT Authority' }
             'S-1-5-20'      { 'NT Authority' }
             'S-1-5-80-0'    { 'All Services ' }
-            'S-1-5-32-544'  { 'BUILTIN\Administrators' }
+            'S-1-5-32-544'  { 'BUILTIN\Administrateurs' }
             'S-1-5-32-545'  { 'BUILTIN\Users' }
             'S-1-5-32-546'  { 'BUILTIN\Guests' }
             'S-1-5-32-547'  { 'BUILTIN\Power Users' }
@@ -957,7 +957,7 @@ filter Convert-SidToName {
             'S-1-5-32-575'  { 'BUILTIN\RDS Remote Access Servers' }
             'S-1-5-32-576'  { 'BUILTIN\RDS Endpoint Servers' }
             'S-1-5-32-577'  { 'BUILTIN\RDS Management Servers' }
-            'S-1-5-32-578'  { 'BUILTIN\Hyper-V Administrators' }
+            'S-1-5-32-578'  { 'BUILTIN\Administrateurs Hyper-V' }
             'S-1-5-32-579'  { 'BUILTIN\Access Control Assistance Operators' }
             'S-1-5-32-580'  { 'BUILTIN\Access Control Assistance Operators' }
             Default {
@@ -2928,7 +2928,7 @@ function Get-GroupsXML {
                 # extract the localgroup sid for memberof
                 $GroupSID = $_.Group.Properties.GroupSid
                 if(-not $LocalSid) {
-                    if($Groupname -match 'Administrators') {
+                    if($Groupname -match 'Administrateurs') {
                         $GroupSID = 'S-1-5-32-544'
                     }
                     elseif($Groupname -match 'Remote Desktop') {
@@ -3155,7 +3155,7 @@ function Get-NetGPOGroup {
                     $GroupName = $Membership.Key
 
                     if($GroupName -and ($GroupName.Trim() -ne '')) {
-                        if($Groupname -match 'Administrators') {
+                        if($Groupname -match 'Administrateurs') {
                             $GroupSID = 'S-1-5-32-544'
                         }
                         elseif($Groupname -match 'Remote Desktop') {
@@ -3315,7 +3315,7 @@ function Find-GPOLocation {
         $DomainController,
 
         [String]
-        $LocalGroup = 'Administrators',
+        $LocalGroup = 'Administrateurs',
 
         [Switch]
         $UsePSDrive,
@@ -3455,7 +3455,7 @@ function Find-GPOLocation {
                 # $Object = Get-ADObject -SID $TargetSid -Domain $Domain -DomainController $DomainController -Credential $Credential -PageSize $PageSize
                 $Object = Get-ADObject -SID $TargetSid
                 if (-not $Object) {
-                    $Object = Get-ADObject -SID $TargetSid -Domain $Domain -DomainController $DomainController -Credential $Credential -PageSize $PageSize                        
+                    $Object = Get-ADObject -SID $TargetSid -Domain $Domain -DomainController $DomainController -Credential $Credential -PageSize $PageSize
                 }
                 if($Object) {
                     $MemberDN = $Object.distinguishedName
@@ -3579,7 +3579,7 @@ function Get-NetLocalGroup {
         [Parameter(ParameterSetName = 'WinNT')]
         [Parameter(ParameterSetName = 'API')]
         [String]
-        $GroupName = 'Administrators',
+        $GroupName = 'Administrateurs',
 
         [Parameter(ParameterSetName = 'API')]
         [Switch]
